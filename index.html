@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!-- Add a button in your HTML for the user to click and request permission -->
+  <button id="requestPermissionButton">Request Notification Permission</button>
+  <body>
+    <script>
+      // JavaScript code
+      const requestPermissionButton = document.getElementById(
+        "requestPermissionButton"
+      );
+
+      requestPermissionButton.addEventListener("click", () => {
+        if ("Notification" in window) {
+          Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+              // Permission granted, you can now show notifications
+              new Notification("Nouveau Message", {
+                title: "Nouveau Message",
+                body: "message",
+                icon: "https://i.pinimg.com/originals/01/ee/fe/01eefe3662a40757d082404a19bce33b.png",
+                image: "https://i.pinimg.com/originals/",
+                badge:
+                  "https://i.pinimg.com/originals/01/ee/fe/01eefe3662a40757d082404a19bce33b.png",
+                lang: "fr",
+              });
+            } else if (permission === "denied") {
+              // Permission denied
+              console.log("Notification permission denied.");
+            } else {
+              // Permission dismissed (usually by closing the prompt)
+              console.log("Notification permission dismissed.");
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
